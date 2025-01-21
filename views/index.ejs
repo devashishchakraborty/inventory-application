@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="appContainer">
+    <%- include("header") %> 
+    <main>
+      <div class="itemsContainer">
+        <div class="reduce">
+          <div class="filterUsing">
+            <label for="filter">Filter:</label>
+            <select
+              name="filter"
+              id="filter"
+            >
+              <option value="all">All Products</option>
+              <option value="men's clothing">Men's Clothing</option>
+              <option value="jewelery">Jewelery</option>
+              <option value="electronics">Electronics</option>
+              <option value="women's clothing">Women's Clothing</option>
+            </select>
+          </div>
+  
+          <div class="sortBy">
+            <label for="sort">Sort By:</label>
+            <select
+              name="sort"
+              id="sort"
+            >
+              <option value="relevance">Relevance</option>
+              <option value="rating">Highest Rated</option>
+              <option value="priceLH">Price (Low to High)</option>
+              <option value="priceHL">Price (High to Low)</option>
+              <option value="popularity">Most Popular</option>
+            </select>
+          </div>
+        </div>
+  
+        <div class="items">
+          <!-- {items &&
+            // Sort and filter products based on the option choosen
+            sortedProducts(order, filteredProducts(category, products)).map(
+              (product) => (
+                <Product
+                  key={product.id} 
+                  product={product}
+                  cart={cart}
+                  modifyCart={modifyCart}
+                />
+              )
+            )} -->
+        </div>
+      </div>
+    </main>
+    <%- include("footer") %> 
+  
+  </div>
+</body>
+</html>

@@ -1,4 +1,5 @@
 import express from "express";
+import indexRouter from "./routes/indexRouter.js";
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -8,7 +9,7 @@ app.set("view engine", "ejs");
 app.use(express.static("./public"));
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => res.send("Welcome to the inventory application"));
+app.use("/", indexRouter);
 
 // Every thrown error in the application or the previous middleware function calling `next` with an error as an argument will eventually go to this middleware function
 app.use((err, req, res, next) => {
