@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="appContainer">
+      <%- include("header") %>
+      <main>
+        <div class="formContainer">
+          <h1>Add New Item</h1>
+          <form action="/add-item" method="post">
+            <div>
+              <label for="title">Title: </label>
+              <input type="text" name="title" id="title" />
+            </div>
+            <div>
+              <label for="price">Price: </label>
+              <input type="number" step="0.01" name="price" id="price" />
+            </div>
+            <div>
+              <label for="description">Description: </label>
+              <textarea
+                name="description"
+                id="description"
+                cols="30"
+                rows="4"
+                style="resize: none;"
+              ></textarea>
+            </div>
+            <div>
+              <label for="category">Category: </label>
+              <select name="category" id="category">
+                <option value="men's clothing">Men's Clothing</option>
+                <option value="jewelery">Jewelery</option>
+                <option value="electronics">Electronics</option>
+                <option value="women's clothing">Women's clothing</option>
+              </select>
+            </div>
+            <div>
+              <label for="imageUrl">Image URL: </label>
+              <input type="url" name="imageUrl" id="imageUrl" />
+            </div>
+          </form>
+        </div>
+      </main>
+      <%- include("footer") %>
+    </div>
+  </body>
+</html>
