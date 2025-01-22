@@ -26,9 +26,7 @@ CREATE TABLE IF NOT EXISTS items (
   category TEXT REFERENCES categories(name) ON DELETE SET NULL,
   image_url TEXT,
   description TEXT,
-  price FLOAT,
-  rating_points FLOAT,
-  rating_count INTEGER
+  price FLOAT
 );
 `;
 
