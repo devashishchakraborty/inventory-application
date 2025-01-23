@@ -12,13 +12,15 @@
       <%- include("header") %>
       <main>
         <div class="itemContainer">
-          <div class="imageContainer">
+          <div class="itemImage">
             <img src="<%= item.image_url %>" alt="">
           </div>
-          <h2 class="title"><%= item.title %></h2>
-          <h1 class="price">$<%= item.price %></h1>
-          <div class="description"><b>Description: </b><%= item.description %></div>
-          <div class="category"><b>Category:</b> <%= item.category %></div>
+          <div class="itemContent">
+            <div class="title"><b><%= item.title %></b></div>
+            <div class="price"><b>$<%= item.price %></b></div>
+            <div class="description"><b>Description: </b><%= item.description %></div>
+            <div class="category"><b>Category:</b> <%= item.category %></div>  
+          </div>
         </div>
       </main>
       <%- include("footer") %>

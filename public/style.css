@@ -126,7 +126,7 @@ footer {
     border-radius: 4px;
   }
 
-  option {
+  select, option {
     text-transform: capitalize;
   }
 }
@@ -250,30 +250,40 @@ footer {
 /* Item Page */
 .itemContainer {
   padding: 64px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
   width: 1000px;
   min-width: 800px;
-  column-gap: 32px;
+  gap: 32px;
+  display: flex;
 
-
-
-  .imageContainer{
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-column: 1 / 2;
-    grid-row: 1 / -1;
+  .itemImage{
     border: 2px solid lightgray;
-    padding: 32px;
+    padding: 64px;
 
     img{
-      max-width: 480px;
-      max-height: 480px;
+      max-width: 360px;
+      max-height: 360px;
     }
   }
+
+  .itemContent{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.2em;
+    gap: 32px;
+
+    .price {
+      font-size: 2em;
+    }
+
+    .title{
+      font-size: 1.2em;
+    }
+
+    .category{
+      text-transform: capitalize;
+    }
+  }
+
 }
 
 @media (prefers-color-scheme: light) {
