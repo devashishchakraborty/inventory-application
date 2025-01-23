@@ -1,4 +1,5 @@
-html, body{
+html,
+body {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -11,7 +12,6 @@ html, body{
   line-height: 1.5;
   font-weight: 400;
 
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,6 +21,7 @@ html, body{
 a {
   font-weight: 500;
   text-decoration: inherit;
+  color: inherit;
 }
 
 button {
@@ -33,31 +34,32 @@ button {
   cursor: pointer;
 }
 
-#root{
+#root {
   height: 100%;
 }
 
-.appContainer{
+.appContainer {
   display: flex;
   flex-direction: column;
   min-height: 100%;
   --dark-blue: #213547;
 }
 
-h1, h2{
+h1,
+h2 {
   margin: 0;
   font-weight: 500;
 }
 
-
-main{
+main {
   display: flex;
   flex-direction: column;
   flex: 1;
+  align-items: center;
 }
 
 /* Header */
-header{
+header {
   display: flex;
   gap: 32px;
   align-items: center;
@@ -71,32 +73,30 @@ header{
   top: 0;
   z-index: 1;
 
-
-  a, a:hover{
+  a,
+  a:hover {
     color: white;
   }
 }
 
-.mainLogo{
+.mainLogo {
   display: flex;
   gap: 8px;
   align-items: center;
 
-  img{
+  img {
     height: 2em;
     width: 2em;
   }
 }
 
-  
-nav{
+nav {
   display: flex;
   align-items: center;
   gap: 32px;
 }
 
-
-footer{
+footer {
   display: flex;
 }
 
@@ -107,15 +107,6 @@ footer{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 16px;
-  }
-
-  .item {
-    width: 200px;
-    min-width: 160px;
-  }
-
-  .item .image {
-    max-height: 240px;
   }
 }
 
@@ -134,8 +125,156 @@ footer{
     padding: 4px;
     border-radius: 4px;
   }
+
+  option {
+    text-transform: capitalize;
+  }
 }
 
+/* Item */
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid lightgray;
+  padding: 24px;
+  border-radius: 16px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 200px;
+  min-width: 160px;
+  cursor: pointer;
+
+  .category {
+    position: absolute;
+    top: 20px;
+    font-size: 0.7em;
+    left: 0;
+    background-color: var(--dark-blue);
+    color: white;
+    padding: 0.3em 0.6em;
+    border-radius: 0px 4px 4px 0px;
+  }
+  
+}
+
+.item .image {
+  width: 100%;
+  max-height: 240px;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.imgContainer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .btns {
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.addToCartBtn {
+  color: var(--dark-blue);
+  border: 2px solid var(--dark-blue);
+  background-color: white;
+  border-radius: 16px;
+  font-weight: bold;
+  transition: 0.25s ease background-color, 0.25s ease color, 0.25s ease transform;
+  min-width: max-content;
+  flex: 1;
+}
+
+.addToCartBtn:hover {
+  color: white;
+  background-color: var(--dark-blue);
+}
+
+.addToCartBtn:active {
+  transform: scale(0.95);
+}
+
+
+.removeItemBtn {
+  background-color: white;
+  border: 2px solid crimson;
+  border-radius: 16px;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.removeItemBtn:hover {
+  background-color: crimson;
+
+  img {
+    filter: invert(97%) sepia(97%) saturate(11%) hue-rotate(197deg)
+      brightness(105%) contrast(102%);
+  }
+}
+
+
+.itemCountInCart{
+  position: absolute;
+  top: 20px;
+  font-size: 0.7em;
+  left: 0;
+  background-color: var(--dark-blue);
+  color: white;
+  padding: 0.3em 0.6em;
+  border-radius: 0px 4px 4px 0px;
+}
+*/
+
+.rating{
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  img{
+    height: 1.3em;
+    width: 1.3em;
+  }
+} 
+
+/* Item Page */
+.itemContainer {
+  padding: 64px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  width: 1000px;
+  min-width: 800px;
+  column-gap: 32px;
+
+
+
+  .imageContainer{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1 / 2;
+    grid-row: 1 / -1;
+    border: 2px solid lightgray;
+    padding: 32px;
+
+    img{
+      max-width: 480px;
+      max-height: 480px;
+    }
+  }
+}
 
 @media (prefers-color-scheme: light) {
   :root {

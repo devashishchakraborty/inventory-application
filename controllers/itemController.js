@@ -1,10 +1,12 @@
 import queries from "../db/queries.js";
 import asyncHandler from "express-async-handler";
 import CustomNotFoundError from "../errors/CustomNotFoundError.js";
+import utils from "../Utils.js";
 
 const getItems = async (req, res) => {
   const items = await queries.getAllItems();
-  res.render("index", { items: items });
+  const categories = await queries.getAllCategories();
+  res.render("index", { items: items, categories: categories, utils: utils });
 };
 
 const addItemGet = async (req, res) => res.render("form");

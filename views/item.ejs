@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="appContainer">
+      <%- include("header") %>
+      <main>
+        <div class="itemContainer">
+          <div class="imageContainer">
+            <img src="<%= item.image_url %>" alt="">
+          </div>
+          <h2 class="title"><%= item.title %></h2>
+          <h1 class="price">$<%= item.price %></h1>
+          <div class="description"><b>Description: </b><%= item.description %></div>
+          <div class="category"><b>Category:</b> <%= item.category %></div>
+        </div>
+      </main>
+      <%- include("footer") %>
+    </div>
+  </body>
+</html>

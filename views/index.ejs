@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
@@ -16,23 +17,34 @@
               <label for="filter">Filter:</label>
               <select name="filter" id="filter">
                 <option value="all">All Products</option>
-                <option value="men's clothing">Men's Clothing</option>
-                <option value="jewelery">Jewelery</option>
-                <option value="electronics">Electronics</option>
-                <option value="women's clothing">Women's Clothing</option>
+                <% if (locals.categories) categories.forEach(category => { %>
+                <option value="<%= category.name %>">
+                  <%= category.name %>
+                </option>
+                <% }) %>
               </select>
             </div>
           </div>
 
           <div class="items">
             <% if (locals.items) items.forEach(item => { %>
-            <div class="item" itemId="<%= item.id %>">
-              <div class="image"><img src="<%= item.image_url %>" alt="" /></div>
-              <div class="title"><%= item.title %></div>
-              <div class="description"><%= item.description %></div>
+            <a href="/<%= item.id %>" class="item">
+              <div class="imgContainer">
+                <img class="image" src="<%= item.image_url %>" alt="" />
+              </div>
+              <div class="title" title="<%= item.title %>">
+                <%= utils.trimTitle(item.title) %>
+              </div>
               <div class="category"><%= item.category %></div>
-              <div class="price"><%= item.price %></div>
-            </div>
+              <div class="rating" title="<%= item.rating_points %>">
+                  <% utils.generateStars(item.rating_points).forEach((star) =>{
+                  %>
+                  <img src="<%= star %>" alt="" />
+                  <% }) %>
+                (<%= item.rating_count %>)
+              </div>
+              <h2 class="price">$<%= item.price %></h2>
+            </a>
             <% }); %>
           </div>
         </div>
