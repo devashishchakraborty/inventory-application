@@ -39,15 +39,11 @@ async function main() {
 
   for (const product of products) {
     await client.query(
-      `INSERT INTO items (title, category, image_url, description, price, rating_points, rating_count) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+      `UPDATE items SET rating_count=$1, rating_points=$2 WHERE id=$3`,
       [
-        product.title,
-        product.category,
-        product.image,
-        product.description,
-        product.price,
-        product.rating.rate,
         product.rating.count,
+        product.rating.rate,
+        product.id
       ]
     );
   }

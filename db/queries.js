@@ -39,6 +39,11 @@ const deleteAllItems = async () => {
   await pool.query("DELETE FROM items");
 };
 
+const getAllCategories = async () => {
+  const { rows } = await pool.query("SELECT * FROM categories");
+  return rows;
+}
+
 export default {
   getItem,
   getAllItems,
@@ -46,4 +51,5 @@ export default {
   updateItem,
   deleteItem,
   deleteAllItems,
+  getAllCategories
 };
