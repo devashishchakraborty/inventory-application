@@ -39,14 +39,23 @@ const deleteAllItems = async () => {
   await pool.query("DELETE FROM items");
 };
 
+const getItemsByCategory = async (categoryName) => {
+  const { rows } = await pool.query("SELECT * FROM items WHERE category = $1", [categoryName]);
+  return rows;
+};
+
 const getAllCategories = async () => {
   const { rows } = await pool.query("SELECT * FROM categories");
   return rows;
 };
 
-const addCategory = async (categoryName) => {
-  await pool.query("INSERT INTO category (name) VALUES ($1)", [categoryName]);
+const insertCategory = async (categoryName) => {
+  await pool.query("INSERT INTO categories (name) VALUES ($1)", [categoryName]);
 };
+
+const deleteCategory = async (categoryName) => {
+  await pool.query("DELETE * FROM items WHERE id = $1", [categoryName]);
+}
 
 export default {
   getItem,
@@ -56,5 +65,7 @@ export default {
   deleteItem,
   deleteAllItems,
   getAllCategories,
-  addCategory,
+  insertCategory,
+  getItemsByCategory,
+  deleteCategory
 };

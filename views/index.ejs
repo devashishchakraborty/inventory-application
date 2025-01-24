@@ -2,9 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <base href="/">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Inventory Application</title>
   </head>
   <body>
@@ -12,20 +13,6 @@
       <%- include("header") %>
       <main>
         <div class="itemsContainer">
-          <div class="reduce">
-            <div class="selectCategory">
-              <label for="category">Select Category:</label>
-              <select name="category" id="category">
-                <option value="all">All Products</option>
-                <% if (locals.categories) categories.forEach(category => { %>
-                <option value="<%= category.name %>">
-                  <%= category.name %>
-                </option>
-                <% }) %>
-              </select>
-            </div>
-          </div>
-
           <div class="items">
             <% if (locals.items) items.forEach(item => { %>
             <a href="/<%= item.id %>" class="item">

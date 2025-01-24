@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <base href="/">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
@@ -12,19 +13,20 @@
       <%- include("header") %>
       <main>
         <div class="formContainer">
+          <%- include("partials/errors") %>
           <h1>Add New Category</h1>
-          <form action="/add-category" method="post">
+          <form action="/categories/add" method="post">
             <input
               type="text"
-              name="name"
-              id="name"
+              name="categoryName"
+              id="categoryName"
               placeholder="Enter Category Name!"
+              required
             />
-            <button type="submit">Add</button>
+            <button type="submit" class="submitBtn">Add</button>
           </form>
         </div>
       </main>
-      <%- include("footer") %>
     </div>
   </body>
 </html>

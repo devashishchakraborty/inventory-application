@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Inventory Application</title>
+  </head>
+  <body>
+    <div class="appContainer">
+      <%- include("header") %>
+      <main>
+        <div class="categoriesContainer">
+          <% if (locals.categories) categories.forEach(category => { %>
+          <a href="categories/<%= category.name %>" class="category">
+            <h1 class="categoryName"><%= category.name %></h1>
+          </a>
+          <% }); %>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

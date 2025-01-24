@@ -13,6 +13,7 @@ const addItemGet = async(req, res) => {
   const categories = await queries.getAllCategories();
   res.render("addItem", { categories: categories });
 };
+
 const addItemPost = async (req, res) => {
   const item = req.body;
   await queries.insertItem(item);
@@ -27,7 +28,7 @@ const getItemById = asyncHandler(async (req, res) => {
     throw new CustomNotFoundError("Item not found");
   }
 
-  res.render("item", { item: item });
+  res.render("item", { item: item, utils: utils });
 });
 
 const deleteItems = async (req, res) => {
@@ -35,13 +36,6 @@ const deleteItems = async (req, res) => {
   res.redirect("/");
 };
 
-const addCategoryGet = (req, res) => res.render("addCategory");
-
-const addCategoryPost = async (req, res) => {
-  const { category } = req.body;
-  await queries.addCategory(category);
-  res.redirect("/");
-};
 
 export default {
   getItems,
@@ -49,5 +43,4 @@ export default {
   addItemPost,
   getItemById,
   deleteItems,
-  addCategoryGet
 };
