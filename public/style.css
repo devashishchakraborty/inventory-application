@@ -56,6 +56,7 @@ main {
   flex-direction: column;
   flex: 1;
   align-items: center;
+  padding: 64px;
 }
 
 /* Header */
@@ -94,6 +95,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 32px;
+  font-size: 1.2em;
 }
 
 footer {
@@ -101,7 +103,6 @@ footer {
 }
 
 .itemsContainer {
-  padding: 32px 64px;
 
   .items {
     display: grid;
@@ -110,26 +111,51 @@ footer {
   }
 }
 
+.formContainer{
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  border: 2px solid lightgray;
+  border-radius: 8px;
+  gap: 16px;
+  
+  form{
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+    font-size: 1.1em;
+
+    div{
+      display: flex;
+      gap: 8px;
+      align-items: start;
+      justify-content: space-between;
+    }
+  }
+
+  input, textarea, select{
+    padding: 4px;
+    font-size: 1.1em;
+    width: 20rem;
+  }
+}
+
 .reduce {
   display: flex;
   gap: 16px;
   margin-bottom: 16px;
-
-  div {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  select {
-    padding: 4px;
-    border-radius: 4px;
-  }
-
-  select, option {
-    text-transform: capitalize;
-  }
 }
+
+.selectCategory select {
+  border-radius: 2px;
+  text-transform: capitalize;
+  width: 20.5rem;
+}
+
+.category{
+  text-transform: capitalize;
+}
+
 
 /* Item */
 .item {
@@ -176,6 +202,28 @@ footer {
   justify-content: center;
 }
 
+.submitBtn {
+  color: var(--dark-blue);
+  border: 2px solid var(--dark-blue);
+  background-color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.25s ease background-color, 0.25s ease color, 0.25s ease transform;
+  min-width: max-content;
+  flex: 1;
+}
+
+.submitBtn:hover {
+  color: white;
+  background-color: var(--dark-blue);
+}
+
+.submitBtn:active {
+  transform: scale(0.95);
+}
+
+
+
 /* .btns {
   align-self: stretch;
   display: flex;
@@ -183,25 +231,7 @@ footer {
   gap: 8px;
 }
 
-.addToCartBtn {
-  color: var(--dark-blue);
-  border: 2px solid var(--dark-blue);
-  background-color: white;
-  border-radius: 16px;
-  font-weight: bold;
-  transition: 0.25s ease background-color, 0.25s ease color, 0.25s ease transform;
-  min-width: max-content;
-  flex: 1;
-}
 
-.addToCartBtn:hover {
-  color: white;
-  background-color: var(--dark-blue);
-}
-
-.addToCartBtn:active {
-  transform: scale(0.95);
-}
 
 
 .removeItemBtn {
@@ -249,11 +279,11 @@ footer {
 
 /* Item Page */
 .itemContainer {
-  padding: 64px;
   width: 1000px;
   min-width: 800px;
   gap: 32px;
   display: flex;
+  align-items: start;
 
   .itemImage{
     border: 2px solid lightgray;

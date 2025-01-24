@@ -9,7 +9,10 @@ const getItems = async (req, res) => {
   res.render("index", { items: items, categories: categories, utils: utils });
 };
 
-const addItemGet = async (req, res) => res.render("form");
+const addItemGet = async(req, res) => {
+  const categories = await queries.getAllCategories();
+  res.render("addItem", { categories: categories });
+};
 const addItemPost = async (req, res) => {
   const item = req.body;
   await queries.insertItem(item);
@@ -32,10 +35,19 @@ const deleteItems = async (req, res) => {
   res.redirect("/");
 };
 
+const addCategoryGet = (req, res) => res.render("addCategory");
+
+const addCategoryPost = async (req, res) => {
+  const { category } = req.body;
+  await queries.addCategory(category);
+  res.redirect("/");
+};
+
 export default {
   getItems,
   addItemGet,
   addItemPost,
   getItemById,
   deleteItems,
+  addCategoryGet
 };

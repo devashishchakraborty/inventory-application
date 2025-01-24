@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon" />
+    <title>Add New Category</title>
+  </head>
+  <body>
+    <div class="appContainer">
+      <%- include("header") %>
+      <main>
+        <div class="formContainer">
+          <h1>Add New Category</h1>
+          <form action="/add-category" method="post">
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Enter Category Name!"
+            />
+            <button type="submit">Add</button>
+          </form>
+        </div>
+      </main>
+      <%- include("footer") %>
+    </div>
+  </body>
+</html>

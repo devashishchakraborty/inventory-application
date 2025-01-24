@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon">
+    <title>Add New Item</title>
   </head>
   <body>
     <div class="appContainer">
@@ -26,28 +27,28 @@
               <textarea
                 name="description"
                 id="description"
-                cols="30"
-                rows="4"
+                rows="3"
                 style="resize: none;"
               ></textarea>
             </div>
-            <div>
-              <label for="category">Category: </label>
+            <div class="selectCategory">
+              <label for="category">Select Category:</label>
               <select name="category" id="category">
-                <option value="men's clothing">Men's Clothing</option>
-                <option value="jewelery">Jewelery</option>
-                <option value="electronics">Electronics</option>
-                <option value="women's clothing">Women's clothing</option>
+                <% if (locals.categories) categories.forEach(category => { %>
+                <option value="<%= category.name %>">
+                  <%= category.name %>
+                </option>
+                <% }) %>
               </select>
             </div>
             <div>
               <label for="imageUrl">Image URL: </label>
               <input type="url" name="imageUrl" id="imageUrl" />
             </div>
+            <button type="submit" class="submitBtn">Submit</button>
           </form>
         </div>
       </main>
-      <%- include("footer") %>
     </div>
   </body>
 </html>

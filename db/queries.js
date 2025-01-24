@@ -42,7 +42,11 @@ const deleteAllItems = async () => {
 const getAllCategories = async () => {
   const { rows } = await pool.query("SELECT * FROM categories");
   return rows;
-}
+};
+
+const addCategory = async (categoryName) => {
+  await pool.query("INSERT INTO category (name) VALUES ($1)", [categoryName]);
+};
 
 export default {
   getItem,
@@ -51,5 +55,6 @@ export default {
   updateItem,
   deleteItem,
   deleteAllItems,
-  getAllCategories
+  getAllCategories,
+  addCategory,
 };

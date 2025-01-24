@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
+    <title>Inventory Application</title>
   </head>
   <body>
     <div class="appContainer">
@@ -13,9 +13,9 @@
       <main>
         <div class="itemsContainer">
           <div class="reduce">
-            <div class="filterUsing">
-              <label for="filter">Filter:</label>
-              <select name="filter" id="filter">
+            <div class="selectCategory">
+              <label for="category">Select Category:</label>
+              <select name="category" id="category">
                 <option value="all">All Products</option>
                 <% if (locals.categories) categories.forEach(category => { %>
                 <option value="<%= category.name %>">
@@ -49,7 +49,6 @@
           </div>
         </div>
       </main>
-      <%- include("footer") %>
     </div>
   </body>
 </html>
