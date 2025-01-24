@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon">
-    <title>Add New Item</title>
+    <title>Inventory Application - Add New Item</title>
   </head>
   <body>
     <div class="appContainer">
@@ -21,6 +21,14 @@
             <div>
               <label for="price">Price: </label>
               <input type="number" step="0.01" name="price" id="price" required/>
+            </div>
+            <div>
+              <label for="rating_points">Rating Points (out of 5): </label>
+              <input type="number" step="0.1" name="rating_points" id="rating_points" required/>
+            </div>
+            <div>
+              <label for="rating_count">Rated By (No. of People): </label>
+              <input type="number" step="0.1" name="rating_count" id="rating_count" required/>
             </div>
             <div>
               <label for="description">Description: </label>

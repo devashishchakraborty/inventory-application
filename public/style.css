@@ -135,7 +135,6 @@ footer {
 
   input, textarea{
     padding: 4px;
-    font-size: 1.1em;
     width: 20rem;
   }
 
@@ -144,7 +143,7 @@ footer {
     text-transform: capitalize;
     width: 20.5rem;
     padding: 4px;
-    font-size: 1.1em;
+    font-size: 1em;
   }
 }
 

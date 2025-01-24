@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon">
-    <title><%= item.title %></title>
+    <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon" />
+    <title>Inventory Application - <%= item.title %></title>
   </head>
   <body>
     <div class="appContainer">
@@ -13,13 +13,20 @@
       <main>
         <div class="itemContainer">
           <div class="itemImage">
-            <img src="<%= item.image_url %>" alt="">
+            <img src="<%= item.image_url %>" alt="" />
           </div>
           <div class="itemContent">
             <div class="title"><b><%= item.title %></b></div>
+            <div class="rating" title="<%= item.rating_points %>">
+              <% utils.generateStars(item.rating_points).forEach((star) =>{ %>
+              <img src="<%= star %>" alt="" />
+              <% }) %> (<%= item.rating_count %>)
+            </div>
             <div class="price"><b>$<%= item.price %></b></div>
-            <div class="description"><b>Description: </b><%= item.description %></div>
-            <div class="category"><b>Category:</b> <%= item.category %></div>  
+            <div class="description">
+              <b>Description: </b><%= item.description %>
+            </div>
+            <div class="category"><b>Category:</b> <%= item.category %></div>
           </div>
         </div>
       </main>
