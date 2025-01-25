@@ -40,6 +40,29 @@ const addCategoryPost = [
   },
 ];
 
+const updateCategoryGet = (req, res) => {
+  const { categoryName } = req.params;
+  res.render("updateCategory", { categoryName: categoryName });
+};
+
+const updateCategoryPost = [
+  validateCategory,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("updateCategory", {
+        errors: errors.array(),
+      });
+    }
+
+    await queries.updateCategory(
+      req.body.categoryName,
+      req.params.categoryName
+    );
+    res.redirect("/categories");
+  },
+];
+
 const getItemsByCategory = asyncHandler(async (req, res) => {
   const { categoryName } = req.params;
   const items = await queries.getItemsByCategory(categoryName);
@@ -56,4 +79,6 @@ export default {
   addCategoryGet,
   addCategoryPost,
   getItemsByCategory,
+  updateCategoryGet,
+  updateCategoryPost,
 };

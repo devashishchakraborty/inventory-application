@@ -197,7 +197,7 @@ footer {
   justify-content: center;
 }
 
-.submitBtn {
+.submitBtn, .updateBtn {
   color: var(--dark-blue);
   border: 2px solid var(--dark-blue);
   background-color: white;
@@ -208,14 +208,45 @@ footer {
   flex: 1;
 }
 
-.submitBtn:hover {
+.submitBtn:hover, .updateBtn:hover {
   color: white;
   background-color: var(--dark-blue);
 }
 
-.submitBtn:active {
+.submitBtn:active, .updateBtn:active {
   transform: scale(0.95);
 }
+
+.deleteBtn {
+  color: crimson;
+  border: 2px solid crimson;
+  background-color: white;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.25s ease background-color, 0.25s ease color, 0.25s ease transform;
+  min-width: max-content;
+  flex: 1;
+}
+
+.updateBtn, .deleteBtn{
+  padding: 0.3em;
+  display: flex;
+  
+  svg{
+    height: 1em;
+    width: 1em;
+  }
+}
+
+.deleteBtn:hover {
+  color: white;
+  background-color: crimson;
+}
+
+.deleteBtn:active {
+  transform: scale(0.95);
+}
+
 
 .rating{
   display: flex;
@@ -271,13 +302,22 @@ footer {
   display: flex;
   gap: 32px;
   flex-wrap: wrap;
+  font-size: 1.5em;
 
   .category{
     padding: 24px;
     border-radius: 16px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;  
     border: 2px solid lightgray;
-    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .btns{
+    display: flex;
+    gap: 8px;
   }
 }
 

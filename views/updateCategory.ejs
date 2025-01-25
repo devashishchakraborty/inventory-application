@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon" />
+    <title>Inventory Application - Add New Category</title>
+  </head>
+  <body>
+    <div class="appContainer">
+      <%- include("header") %>
+      <main>
+        <%- include("partials/errors") %>
+        <div class="formContainer">
+          <h1>Change Category Name</h1>
+          <form action="/categories/<%= categoryName %>/update" method="post">
+            <input
+              type="text"
+              name="categoryName"
+              id="categoryName"
+              placeholder="Enter Category Name!"
+              value="<%= categoryName %> "
+              required
+            />
+            <button type="submit" class="submitBtn">Add</button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

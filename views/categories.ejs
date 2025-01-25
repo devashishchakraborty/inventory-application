@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <base href="/">
+    <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon" />
     <link rel="stylesheet" href="./style.css" />
@@ -14,9 +14,19 @@
       <main>
         <div class="categoriesContainer">
           <% if (locals.categories) categories.forEach(category => { %>
-          <a href="categories/<%= category.name %>" class="category">
-            <h1 class="categoryName"><%= category.name %></h1>
-          </a>
+          <div class="category">
+            <a href="/categories/<%= category.name %>" class="categoryName">
+              <%= category.name %>
+            </a>
+            <div class="btns">
+              <a href="/categories/<%= category.name %>/update" class="updateBtn">
+                <%- include("editBtnSvg") %>
+              </a>
+              <a href="/categories/<%= category.name %>/delete" class="deleteBtn">
+                <%- include("deleteBtnSvg") %>
+              </a>  
+            </div>
+          </div>
           <% }); %>
         </div>
       </main>
