@@ -9,12 +9,13 @@
   </head>
   <body>
     <div class="appContainer">
-      <%- include("header") %>
+      <%- include("partials/header") %>
       <main>
         <div class="itemContainer">
           <div class="itemImage">
             <img src="<%= item.image_url %>" alt="" />
           </div>
+
           <div class="itemContent">
             <div class="title"><b><%= item.title %></b></div>
             <div class="rating" title="<%= item.rating_points %>">
@@ -27,6 +28,14 @@
               <b>Description: </b><%= item.description %>
             </div>
             <div class="category"><b>Category:</b> <%= item.category %></div>
+          </div>
+          <div class="btns">
+            <a href="/<%= item.id %>/update" class="updateBtn">
+              <%- include("partials/editBtnSvg") %>
+            </a>
+            <a href="/<%= item.id %>/delete" class="deleteBtn">
+              <%- include("partials/deleteBtnSvg") %>
+            </a>
           </div>
         </div>
       </main>

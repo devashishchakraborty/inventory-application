@@ -4,10 +4,10 @@ const indexRouter = Router();
 
 indexRouter.get("/", itemController.getItems);
 indexRouter.get("/add", itemController.addItemGet);
-indexRouter.get("/:itemId", itemController.getItemById);
-indexRouter.get("/:itemId/update", (req, res) => {});
+indexRouter.get("/:itemId", itemController.getItem);
+indexRouter.get("/:itemId/update", itemController.updateItemGet);
 
 indexRouter.post("/add", itemController.addItemPost);
-indexRouter.post("/:itemId/update", (req, res) => {});
-indexRouter.post("/:itemId/delete", (req, res) => {});
+indexRouter.post("/:itemId/update", itemController.updateItemPost);
+indexRouter.get("/:itemId/delete", itemController.deleteItem);
 export default indexRouter;

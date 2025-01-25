@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon" />
+    <title>Inventory Application - Add New Item</title>
+  </head>
+  <body>
+    <div class="appContainer">
+      <%- include("partials/header") %>
+      <main>
+        <%- include("partials/errors") %>
+        <div class="formContainer">
+          <h1>Update Item</h1>
+          <form action="/<%= item.id %>/update" method="post">
+            <div>
+              <label for="title">Title: </label>
+              <input
+                type="text"
+                name="title"
+                id="title"
+                value="<%= item.title %>"
+                required
+              />
+            </div>
+            <div>
+              <label for="price">Price: </label>
+              <input
+                type="number"
+                step="0.01"
+                name="price"
+                id="price"
+                value="<%= item.price %>"
+                required
+              />
+            </div>
+            <div>
+              <label for="rating_points">Rating Points (out of 5): </label>
+              <input
+                type="number"
+                step="0.1"
+                name="rating_points"
+                id="rating_points"
+                value="<%= item.rating_points %>"
+                required
+              />
+            </div>
+            <div>
+              <label for="rating_count">Rated By (No. of People): </label>
+              <input
+                type="number"
+                step="0.1"
+                name="rating_count"
+                id="rating_count"
+                value="<%= item.rating_count %>"
+                required
+              />
+            </div>
+            <div>
+              <label for="description">Description: </label>
+              <textarea name="description" id="description" rows="3" required><%= item.description %></textarea>
+            </div>
+            <div class="selectCategory">
+              <label for="category">Select Category:</label>
+              <select
+                name="category"
+                id="category"
+                selected="<%= item.category %>"
+                required
+              >
+                <% if (locals.categories) categories.forEach(category => { %>
+                <option value="<%= category.name %>">
+                  <%= category.name %>
+                </option>
+                <% }) %>
+              </select>
+            </div>
+            <div>
+              <label for="image_url">Image URL: </label>
+              <input type="url" name="image_url" id="image_url" value="<%= item.image_url %> " required />
+            </div>
+            <button type="submit" class="submitBtn">Submit</button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

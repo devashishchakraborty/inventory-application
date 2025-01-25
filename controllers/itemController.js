@@ -41,7 +41,7 @@ const addItemPost = [
   },
 ];
 
-const getItemById = asyncHandler(async (req, res) => {
+const getItem = asyncHandler(async (req, res) => {
   const { itemId } = req.params;
   const item = await queries.getItem(itemId);
 
@@ -52,6 +52,46 @@ const getItemById = asyncHandler(async (req, res) => {
   res.render("item", { item: item, utils: utils });
 });
 
+const updateItemGet = asyncHandler(async (req, res) => {
+  const { itemId } = req.params;
+  const item = await queries.getItem(itemId);
+
+  if (!item) {
+    throw new CustomNotFoundError("Item not found");
+  }
+
+  const categories = await queries.getAllCategories();
+  res.render("updateItem", { item: item, categories: categories });
+});
+
+const updateItemPost = [
+  validateItem,
+  async (req, res) => {
+    const errors = validationResult(req);
+    const { itemId } = req.params;
+
+    if (!errors.isEmpty()) {
+      const item = await queries.getItem(itemId);
+      const categories = await queries.getAllCategories();
+      return res.status(400).render("updateItem", {
+        errors: errors.array(),
+        item: item,
+        categories: categories,
+      });
+    }
+
+    const updatedItem = req.body;
+    await queries.updateItem(itemId, updatedItem);
+    res.redirect("/");
+  },
+];
+
+const deleteItem = async (req, res) => {
+  const { itemId } = req.params;
+  await queries.deleteItem(itemId);
+  res.redirect("/")
+}
+
 const deleteItems = async (req, res) => {
   await queries.deleteAllItems();
   res.redirect("/");
@@ -61,6 +101,9 @@ export default {
   getItems,
   addItemGet,
   addItemPost,
-  getItemById,
+  getItem,
   deleteItems,
+  updateItemGet,
+  updateItemPost,
+  deleteItem
 };

@@ -51,10 +51,15 @@ const addCategoryPost = [
   },
 ];
 
-const updateCategoryGet = (req, res) => {
+const updateCategoryGet = asyncHandler(async (req, res) => {
   const { categoryName } = req.params;
+  const categories = await queries.getAllCategories();
+
+  if (!categories.map(category => category.name).includes(categoryName)) {
+    throw new CustomNotFoundError("Category doesn't Exist!");
+  }
   res.render("updateCategory", { categoryName: categoryName });
-};
+});
 
 const updateCategoryPost = [
   validateCategory,

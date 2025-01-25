@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="appContainer">
-      <%- include("header") %>
+      <%- include("partials/header") %>
       <main>
         <div class="categoriesContainer">
           <% if (locals.categories) categories.forEach(category => { %>
@@ -20,10 +20,10 @@
             </a>
             <div class="btns">
               <a href="/categories/<%= category.name %>/update" class="updateBtn">
-                <%- include("editBtnSvg") %>
+                <%- include("partials/editBtnSvg") %>
               </a>
               <a href="/categories/<%= category.name %>/delete" class="deleteBtn">
-                <%- include("deleteBtnSvg") %>
+                <%- include("partials/deleteBtnSvg") %>
               </a>
             </div>
           </div>

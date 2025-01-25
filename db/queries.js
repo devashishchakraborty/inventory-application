@@ -17,22 +17,22 @@ const insertItem = async (item) => {
   );
 };
 
-const updateItem = async (item) => {
+const updateItem = async (itemId, item) => {
   await pool.query(
-    "UPDATE items SET title=$1, category=$2, image_url=$3, description=$4, price=$5) WHERE id=$6",
+    "UPDATE items SET title=$1, category=$2, image_url=$3, description=$4, price=$5 WHERE id=$6",
     [
       item.title,
       item.category,
       item.image_url,
       item.description,
       item.price,
-      item.id,
+      itemId,
     ]
   );
 };
 
 const deleteItem = async (id) => {
-  await pool.query("DELETE * FROM items WHERE id = $1", [id]);
+  await pool.query("DELETE FROM items WHERE id = $1", [id]);
 };
 
 const deleteAllItems = async () => {
