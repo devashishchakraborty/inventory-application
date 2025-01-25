@@ -10,8 +10,8 @@ const validateCategory = [
     .trim()
     .custom(async (value) => {
       const categories = await queries.getAllCategories();
-      const categorieNames = categories.map((category) => category.name);
-      if (categorieNames.includes(value)) {
+      const categoryNames = categories.map((category) => category.name);
+      if (categoryNames.includes(value)) {
         throw new Error("Category already exists! Try a different one.");
       }
     }),
@@ -21,6 +21,17 @@ const getCategories = async (req, res) => {
   const categories = await queries.getAllCategories();
   res.render("categories", { categories: categories });
 };
+
+const getItemsByCategory = asyncHandler(async (req, res) => {
+  const { categoryName } = req.params;
+  const items = await queries.getItemsByCategory(categoryName);
+
+  if (!items || items.length === 0) {
+    throw new CustomNotFoundError("No Items found!");
+  }
+
+  res.render("index", { items: items, utils: utils });
+});
 
 const addCategoryGet = (req, res) => res.render("addCategory");
 
@@ -63,16 +74,11 @@ const updateCategoryPost = [
   },
 ];
 
-const getItemsByCategory = asyncHandler(async (req, res) => {
+const deleteCategory = async (req, res) => {
   const { categoryName } = req.params;
-  const items = await queries.getItemsByCategory(categoryName);
-
-  if (!items || items.length === 0) {
-    throw new CustomNotFoundError("No Items found!");
-  }
-
-  res.render("index", { items: items, utils: utils });
-});
+  await queries.deleteCategory(categoryName);
+  res.redirect("/categories");
+};
 
 export default {
   getCategories,
@@ -81,4 +87,5 @@ export default {
   getItemsByCategory,
   updateCategoryGet,
   updateCategoryPost,
+  deleteCategory,
 };

@@ -10,4 +10,6 @@ categoryRouter.get("/:categoryName/update", categoryController.updateCategoryGet
 categoryRouter.post("/:categoryName/update", categoryController.updateCategoryPost);
 categoryRouter.post("/add", categoryController.addCategoryPost);
 
+categoryRouter.get("/:categoryName/delete", categoryController.deleteCategory)
+
 export default categoryRouter;
