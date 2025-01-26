@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base href="/">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./inventory-logo.svg" type="image/x-icon" />
+    <title>Inventory Application - Authenticate</title>
+  </head>
+  <body>
+    <div class="appContainer">
+      <%- include("partials/header") %>
+      <main>
+        <%- include("partials/errors") %>
+        <div class="formContainer">
+          <h1>Enter Admin Password</h1>
+          <form action="/authenticate" method="post">
+            <input
+              type="password"
+              name="adminPassword"
+              id="adminPassword"
+              placeholder="Enter Password Here!"
+              required
+            />
+            <button type="submit" class="submitBtn">Enter</button>
+          </form>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

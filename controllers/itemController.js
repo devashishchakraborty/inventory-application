@@ -2,7 +2,7 @@ import queries from "../db/queries.js";
 import asyncHandler from "express-async-handler";
 import CustomNotFoundError from "../errors/CustomNotFoundError.js";
 import { body, validationResult } from "express-validator";
-import utils from "../Utils.js";
+import Utils from "../Utils.js";
 
 const validateItem = [
   body("rating_points")
@@ -17,12 +17,14 @@ const validateItem = [
 const getItems = async (req, res) => {
   const items = await queries.getAllItems();
   const categories = await queries.getAllCategories();
-  res.render("index", { items: items, categories: categories, utils: utils });
+  res.render("index", { items: items, categories: categories, utils: Utils });
 };
 
 const addItemGet = async (req, res) => {
-  const categories = await queries.getAllCategories();
-  res.render("addItem", { categories: categories });
+  if (req.session.authenticated) {
+    const categories = await queries.getAllCategories();
+    res.render("addItem", { categories: categories });
+  } else res.redirect("/authenticate");
 };
 
 const addItemPost = [
@@ -49,7 +51,7 @@ const getItem = asyncHandler(async (req, res) => {
     throw new CustomNotFoundError("Item not found");
   }
 
-  res.render("item", { item: item, utils: utils });
+  res.render("item", { item: item, utils: Utils });
 });
 
 const updateItemGet = asyncHandler(async (req, res) => {
@@ -87,10 +89,11 @@ const updateItemPost = [
 ];
 
 const deleteItem = async (req, res) => {
-  const { itemId } = req.params;
-  await queries.deleteItem(itemId);
-  res.redirect("/")
-}
+  if (req.session.authenticated) {
+    const { itemId } = req.params;
+    await queries.deleteItem(itemId);
+  } else res.redirect("/authenticate");
+};
 
 const deleteItems = async (req, res) => {
   await queries.deleteAllItems();
@@ -105,5 +108,5 @@ export default {
   deleteItems,
   updateItemGet,
   updateItemPost,
-  deleteItem
+  deleteItem,
 };

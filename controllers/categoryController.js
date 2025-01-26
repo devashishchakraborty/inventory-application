@@ -2,7 +2,7 @@ import queries from "../db/queries.js";
 import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
 import CustomNotFoundError from "../errors/CustomNotFoundError.js";
-import utils from "../Utils.js";
+import Utils from "../Utils.js";
 
 const validateCategory = [
   body("categoryName")
@@ -30,7 +30,7 @@ const getItemsByCategory = asyncHandler(async (req, res) => {
     throw new CustomNotFoundError("No Items found!");
   }
 
-  res.render("index", { items: items, utils: utils });
+  res.render("index", { items: items, utils: Utils });
 });
 
 const addCategoryGet = (req, res) => res.render("addCategory");
@@ -52,13 +52,15 @@ const addCategoryPost = [
 ];
 
 const updateCategoryGet = asyncHandler(async (req, res) => {
-  const { categoryName } = req.params;
-  const categories = await queries.getAllCategories();
+  if (req.session.authenticated) {
+    const { categoryName } = req.params;
+    const categories = await queries.getAllCategories();
 
-  if (!categories.map(category => category.name).includes(categoryName)) {
-    throw new CustomNotFoundError("Category doesn't Exist!");
-  }
-  res.render("updateCategory", { categoryName: categoryName });
+    if (!categories.map((category) => category.name).includes(categoryName)) {
+      throw new CustomNotFoundError("Category doesn't Exist!");
+    }
+    res.render("updateCategory", { categoryName: categoryName });
+  } else res.redirect("/authenticate");
 });
 
 const updateCategoryPost = [
@@ -80,9 +82,11 @@ const updateCategoryPost = [
 ];
 
 const deleteCategory = async (req, res) => {
-  const { categoryName } = req.params;
-  await queries.deleteCategory(categoryName);
-  res.redirect("/categories");
+  if (req.session.authenticated) {
+    const { categoryName } = req.params;
+    await queries.deleteCategory(categoryName);
+    res.redirect("/categories");
+  } else res.redirect("/authenticate");
 };
 
 export default {
