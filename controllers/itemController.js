@@ -55,15 +55,15 @@ const getItem = asyncHandler(async (req, res) => {
 });
 
 const updateItemGet = asyncHandler(async (req, res) => {
-  const { itemId } = req.params;
-  const item = await queries.getItem(itemId);
+  if (req.session.authenticated) {
+    const { itemId } = req.params;
+    const item = await queries.getItem(itemId);
 
-  if (!item) {
-    throw new CustomNotFoundError("Item not found");
-  }
+    if (!item) throw new CustomNotFoundError("Item not found");
 
-  const categories = await queries.getAllCategories();
-  res.render("updateItem", { item: item, categories: categories });
+    const categories = await queries.getAllCategories();
+    res.render("updateItem", { item: item, categories: categories });
+  } else res.redirect("/authenticate");
 });
 
 const updateItemPost = [
@@ -92,6 +92,7 @@ const deleteItem = async (req, res) => {
   if (req.session.authenticated) {
     const { itemId } = req.params;
     await queries.deleteItem(itemId);
+    res.redirect("/")
   } else res.redirect("/authenticate");
 };
 

@@ -33,8 +33,11 @@ const getItemsByCategory = asyncHandler(async (req, res) => {
   res.render("index", { items: items, utils: Utils });
 });
 
-const addCategoryGet = (req, res) => res.render("addCategory");
-
+const addCategoryGet = (req, res) => {
+  req.session.authenticated
+    ? res.render("addCategory")
+    : res.redirect("/authenticate");
+}
 const addCategoryPost = [
   validateCategory,
   async (req, res) => {
