@@ -3,7 +3,7 @@
 ## About
 
 - This project is part of [The Odin Project](https://www.theodinproject.com/) curriculum. It is an inventory management application designed to help users keep track of items, their attributes, and other relevant details. The application is built using modern web development technologies and follows best practices in software development.
-- Live Preview -> [Here]()
+- Live Preview -> [Here](https://medical-romona-garudadeva-4c30ee20.koyeb.app/)
 
 ## Features
 
